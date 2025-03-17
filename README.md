@@ -4,8 +4,6 @@ This project involves developing a custom Detectron2 model to detect breeding pl
 
 
 
-
-
 writable container
 
 ```bash
