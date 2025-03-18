@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Start the PostgreSQL server
-/gpfs/fs7/aafc/phenocart/IDEs/Postgres/pgsql/bin/pg_ctl -D /gpfs/fs7/aafc/phenocart/IDEs/Postgres/data -l logfilePostGRES start -o "-p 5432"
+/gpfs/fs7/aafc/phenocart/IDEs/Postgres/pgsql/bin/pg_ctl -D /gpfs/fs7/aafc/phenocart/IDEs/Postgres/data -l .logfilePostGRES start -o "-p 5432"
 
 # If a screen session named "label-studio" exists, kill it
 if screen -ls | grep -q "label-studio"; then
