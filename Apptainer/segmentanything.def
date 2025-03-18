@@ -1,0 +1,64 @@
+Bootstrap: docker
+From: ubuntu:24.04
+
+%files
+    # Copy the django project files inside the container from the apptainer folder
+    /gpfs/fs7/aafc/phenocart/PhenomicsProjects/Detectron2/Apptainer/requirements.txt /home/ubuntu
+
+%post
+    # Create directories on the container's root
+    mkdir -p /fs /gpfs /space
+
+    # Update and install necessary system dependencies
+    apt-get update
+    apt-get install -y \
+        software-properties-common \
+        python3-pip \
+        python3-venv \
+        python3-dev \
+        build-essential \
+        git \
+        curl \
+        libpq-dev \
+        nano \
+        wget \
+        libsqlite3-dev \
+        lsb-release \
+        libgl1 \
+        ca-certificates
+
+    # Add the deadsnakes repository to get the latest Python version
+    add-apt-repository ppa:deadsnakes/ppa
+    apt-get update
+
+    # NVIDIA CUDA Toolkit "https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#"
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+    dpkg -i cuda-keyring_1.1-1_all.deb
+
+    apt-get update
+    apt-get install -y nvidia-cuda-toolkit
+
+    # Install Python 3.12 and its dependencies
+    apt-get install -y python3.12 python3.12-venv python3.12-dev
+
+    # Update alternatives so that python3 points to python3.12
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+
+    # Create a virtual environment using Python 3.12
+    python3.12 -m venv /home/venv
+
+    # Activate the virtual environment and install dependencies from requirements.txt
+    . /home/venv/bin/activate
+    cd /home/ubuntu
+
+    # Install torch
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+    # Install other requirements
+    pip install -r requirements.txt
+
+%runscript
+#!/bin/bash
+# Activate the virtual environment
+. /home/venv/bin/activate
+cd /home/ubuntu

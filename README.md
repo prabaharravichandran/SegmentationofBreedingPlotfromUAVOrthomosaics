@@ -1,22 +1,53 @@
-# Training Detector2 models for segmenting breeding plots from UAV orthomosaics
+# Training Detectron2 models for segmenting breeding plots from UAV orthomosaics
 
 This project involves developing a custom Detectron2 model to detect breeding plots in orthomosaics. The workflow incorporates Label Studio for image annotation, which integrates with a PostgreSQL for data management.
 
+Build apptainers for training Detectron2,
 
+```bash
+sbatch make.sbatch
+```
+for the first time, I do not have any dependencies installed,
 
-writable container
+run the writable container
 
 ```bash
 . ssmuse-sh -d /fs/ssm/hpco/exp/cuda-12.4.1
+export TMPDIR=/mnt/cache
 apptainer shell \
    --writable \
    --fakeroot \
    --bind /gpfs/fs7/aafc/phenocart:/mnt \
    --contain \
    --no-home \
-   labelstudio_sandbox/
+   segmentanything_sandbox
 ```
 
+Once you are in, activate the environment and install the dependencies,
+
+```bash
+. /home/venv/bin/activate
+```
+
+Install nvidia-cuda-toolkit,
+
+```bash
+    # NVIDIA CUDA Toolkit "https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#"
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+    dpkg -i cuda-keyring_1.1-1_all.deb
+
+    apt-get update
+    apt-get install -y nvidia-cuda-toolkit
+````
+
+Let's install detectron2;
+
+```bash
+python -m pip install detectron2==0.6 -f \
+  https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
+```
+
+
 writable container
 
 ```bash
@@ -27,7 +58,18 @@ apptainer shell \
    --bind /gpfs/fs7/aafc/phenocart:/mnt \
    --contain \
    --no-home \
-   apptainer_sandbox/
+   detectron2_sandbox/
+```
+
+```bash
+. ssmuse-sh -d /fs/ssm/hpco/exp/cuda-12.4.1
+apptainer shell \
+   --writable \
+   --fakeroot \
+   --bind /gpfs/fs7/aafc/phenocart:/mnt \
+   --contain \
+   --no-home \
+   segmentanything_sandbox/
 ```
 
 writable container
