@@ -1,10 +1,10 @@
 # Makefile for managing a Singularity container for a TensorFlow project with CUDA
 
 # Configuration
-IMAGE_NAME = detectron2.sif
-SANDBOX_NAME = detectron2_sandbox
-DEF_FILE = detectron2.def
-BUILD_DIR = /gpfs/fs7/aafc/phenocart/PhenomicsProjects/Detectron2/Apptainer
+IMAGE_NAME = segmentanything.sif
+SANDBOX_NAME = segmentanything_sandbox
+DEF_FILE = segmentanything.def
+BUILD_DIR = /gpfs/fs7/aafc/phenocart/PhenomicsProjects/segmentanything/Apptainer
 TMP_DIR = /tmp/$(SANDBOX_NAME)
 
 .PHONY: all build sandbox clean
