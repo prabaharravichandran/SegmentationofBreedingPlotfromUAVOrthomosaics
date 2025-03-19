@@ -1,6 +1,15 @@
 # Training SegmentAnything & Detectron2 models for segmenting breeding plots in UAV orthomosaics
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Static Badge](https://img.shields.io/badge/Proudly-Canadian-FF0000.svg)
+
 This project involves developing a custom Detectron2 model to detect breeding plots in orthomosaics. The workflow incorporates Label Studio for image annotation, which integrates with a PostgreSQL for data management.
+
+<p align="center">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Detectron2.png" alt="ImageSegmentation with Detectron2" width="80%">
+  <br>
+  <em>Figure 1: Segmentation with Detectron2</em>
+</p>
 
 Build apptainers for training Detectron2,
 
