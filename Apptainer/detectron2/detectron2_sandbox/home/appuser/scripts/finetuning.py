@@ -22,8 +22,10 @@ cfg.MODEL.WEIGHTS = "/home/appuser/models/model_final_f10217.pkl"  # Start from 
 
 cfg.SOLVER.IMS_PER_BATCH = 2
 cfg.SOLVER.BASE_LR = 0.00025  # Learning rate, tune as needed
-cfg.SOLVER.MAX_ITER = 3000    # Adjust iterations as per dataset size
-cfg.SOLVER.STEPS = []         # Disable learning rate decay
+cfg.SOLVER.MAX_ITER = 20000   # Adjust iterations as per dataset size
+cfg.SOLVER.STEPS = [15000, 18000]  # LR decays at these iterations
+cfg.SOLVER.GAMMA = 0.1  # Multiply LR by 0.1 at decay points
+cfg.TEST.EVAL_PERIOD = 5000
 
 cfg.OUTPUT_DIR = "/mnt/PhenomicsProjects/Detectron2/Apptainer/detectron2/detectron2_sandbox/home/appuser/models"
 os.makedirs(cfg.OUTPUT_DIR, exist_ok=True)
