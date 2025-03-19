@@ -118,7 +118,7 @@ else:
 # --------------- 7. Training Loop with Official-Style Checkpoint Saving ---------------
 criterion = nn.BCEWithLogitsLoss()
 optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=1e-4)
-num_epochs = 100
+num_epochs = 500
 model.train()
 
 for epoch in range(num_epochs):
@@ -137,7 +137,7 @@ for epoch in range(num_epochs):
 
     # Save checkpoint every 5 epochs
     os.makedirs("/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/model_checkpoints", exist_ok=True)
-    if (epoch + 1) % 10 == 0:
+    if (epoch + 1) % 100 == 0:
         save_path = f"/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/model_checkpoints/finetuned_sam_epoch{epoch+1}.pth"
         checkpoint = {
             "image_encoder": sam.image_encoder.state_dict(),

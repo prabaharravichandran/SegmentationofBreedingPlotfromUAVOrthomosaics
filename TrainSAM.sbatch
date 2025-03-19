@@ -1,7 +1,6 @@
 #!/bin/bash -l
 
 #SBATCH --job-name=TrainingSAM
-#SBATCH --output=TrainingSAM.out
 #SBATCH --no-requeue
 #SBATCH --partition=gpu_a100
 #SBATCH --account=aafc_phenocart__gpu_a100
@@ -19,13 +18,15 @@ cd /gpfs/fs7/aafc/phenocart/PhenomicsProjects/Detectron2/Apptainer/segmentanythi
 
 # Set up CUDA environment (if required by your workflow)
 . ssmuse-sh -d /fs/ssm/hpco/exp/cuda-12.4.1
-export TMPDIR=/mnt/cache
+
+# Instead of /mnt/cache (which is not writable), set TMPDIR to /tmp
+export TMPDIR=/tmp
+
+# The ORDENV_SETUP warning can be safely ignored if everything else is working.
 
 # Use apptainer exec to run your commands inside the container.
-# This binds your /gpfs/fs7/aafc/phenocart directory to /mnt in the container,
-# and then runs a bash command that activates your virtual environment and executes your Python script.
 apptainer exec \
-    --writable \
+    --nv \
     --fakeroot \
     --bind /gpfs/fs7/aafc/phenocart:/mnt \
     --contain \

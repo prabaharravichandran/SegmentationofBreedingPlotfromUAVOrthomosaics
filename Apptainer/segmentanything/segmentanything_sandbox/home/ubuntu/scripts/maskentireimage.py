@@ -2,6 +2,7 @@ from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+import torch
 
 # Read image using OpenCV
 image = cv2.imread("/home/ubuntu/predictions/image.jpg")
@@ -9,11 +10,12 @@ image = cv2.imread("/home/ubuntu/predictions/image.jpg")
 # If needed, convert BGR (OpenCV default) to RGB
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+# Using vit_h
 sam = sam_model_registry["default"](checkpoint="/home/ubuntu/model_checkpoints/sam_vit_h_4b8939.pth")
 mask_generator = SamAutomaticMaskGenerator(sam)
+
 # Now pass to generate()
 masks = mask_generator.generate(image)
-
 # Create a copy to overlay
 overlay = image.copy()
 

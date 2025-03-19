@@ -11,6 +11,21 @@ for the first time, I do not have any dependencies installed,
 
 run the writable container
 
+salloc
+
+```bash
+salloc --job-name=TrainingSAM \
+       --partition=gpu_a100 \
+       --account=aafc_phenocart__gpu_a100 \
+       --nodes=1 \
+       --cpus-per-task=4 \
+       --mem-per-cpu=128000M \
+       --gres=gpu:4 \
+       --qos=low \
+       --time=48:00:00
+```
+
+
 ```bash
 . ssmuse-sh -d /fs/ssm/hpco/exp/cuda-12.4.1
 export TMPDIR=/mnt/cache
@@ -22,6 +37,19 @@ apptainer shell \
    --no-home \
    segmentanything_sandbox
 ```
+
+```bash
+. ssmuse-sh -d /fs/ssm/hpco/exp/cuda-12.4.1
+export TMPDIR=/mnt/cache
+apptainer shell \
+   --writable \
+   --fakeroot \
+   --bind /gpfs/fs7/aafc/phenocart:/mnt \
+   --contain \
+   --no-home \
+   detectron2_sandbox
+```
+
 
 Once you are in, activate the environment and install the dependencies,
 
