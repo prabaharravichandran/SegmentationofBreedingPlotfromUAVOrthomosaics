@@ -1,0 +1,74 @@
+Bootstrap: docker
+From: nvidia/cuda:12.8.1-devel-ubuntu20.04
+
+%environment
+    export DEBIAN_FRONTEND=noninteractive
+    export PATH="/home/appuser/.local/bin:${PATH}"
+    export FORCE_CUDA="1"
+    export TORCH_CUDA_ARCH_LIST="Kepler;Kepler+Tesla;Maxwell;Maxwell+Tegra;Pascal;Volta;Turing"
+    export FVCORE_CACHE="/tmp"
+    export VIRTUAL_ENV="/home/venv"
+    export PATH="$VIRTUAL_ENV/bin:$PATH"
+
+%files
+    # Copy requirements.txt into appuser’s home directory
+    /gpfs/fs7/aafc/phenocart/PhenomicsProjects/Detectron2/Apptainer/detectron2/requirements.txt /home/appuser/
+
+%post
+    # Create standard directories
+    mkdir -p /fs /gpfs /space /home/appuser
+
+    # Set noninteractive mode to prevent tzdata prompts
+    export DEBIAN_FRONTEND=noninteractive
+    ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+
+    # Install system packages
+    apt-get update && apt-get install -y \
+        software-properties-common \
+        python3-pip \
+        python3-venv \
+        python3-dev \
+        build-essential \
+        git \
+        curl \
+        libpq-dev \
+        nano \
+        wget \
+        libsqlite3-dev \
+        lsb-release \
+        libgl1 \
+        ca-certificates
+
+    # Add deadsnakes PPA and install Python 3.8
+    add-apt-repository ppa:deadsnakes/ppa
+    apt-get update
+    apt-get install -y python3.8 python3.8-venv python3.8-dev
+
+    # Set python3 to point to python3.8
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+
+    # Create virtual environment
+    python3.8 -m venv /home/venv
+
+    # Activate venv and install packages
+    . /home/venv/bin/activate
+    cd /home/appuser
+
+    pip install --upgrade pip
+
+    # Install Python packages
+    pip install tensorboard cmake onnx
+    pip install torch==1.10 torchvision==0.11.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+    pip install 'git+https://github.com/facebookresearch/fvcore'
+
+    # Clone and install detectron2
+    git clone https://github.com/facebookresearch/detectron2 detectron2_repo
+    cd detectron2_repo
+    pip install -e .
+
+%runscript
+#!/bin/bash
+# Activate the virtual environment and run user command
+. /home/venv/bin/activate
+cd /home/appuser
+exec "$@"
