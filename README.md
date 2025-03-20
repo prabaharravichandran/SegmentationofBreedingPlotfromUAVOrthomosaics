@@ -14,7 +14,7 @@ This project involves developing a custom Detectron2 model to detect breeding pl
 <p align="center">
   <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/SegmentAnything.jpg" alt="Image Segmentation with SegmentAnything" width="100%">
   <br>
-  <em>Figure 1: Segmentation with SegmentAnything</em>
+  <em>Figure 2: Segmentation with SegmentAnything</em>
 </p>
 
 Build apptainers for training Detectron2,
