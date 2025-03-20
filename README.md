@@ -123,23 +123,9 @@ apptainer shell \
    --no-home \
    apptainer_sandbox/
 ```
+Setup Postgres
 
-git clone https://github.com/HumanSignal/label-studio.git
-
-# install dependencies
-cd label-studio
-pip install poetry
-poetry install
-
-# run db migrations
-poetry run python label_studio/manage.py migrate
-
-# collect static files
-poetry run python label_studio/manage.py collectstatic
-
-# start the server in development mode at http://localhost:8080
-poetry run python label_studio/manage.py runserver
-
+```bash
 ./configure --prefix=/gpfs/fs7/aafc/phenocart/IDEs/Postgres/pgsql
 make
 make install
@@ -154,3 +140,4 @@ kill $(pgrep postgres)
 stop
 /gpfs/fs7/aafc/phenocart/IDEs/Postgres/pgsql/bin/pg_ctl -D /gpfs/fs7/aafc/phenocart/IDEs/Postgres/data stop
 # SemanticSegmentationwithDetectron2LabelStudioPostGRESDB
+```
