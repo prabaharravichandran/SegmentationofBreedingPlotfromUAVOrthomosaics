@@ -140,15 +140,6 @@ poetry run python label_studio/manage.py collectstatic
 # start the server in development mode at http://localhost:8080
 poetry run python label_studio/manage.py runserver
 
-export DJANGO_DB=postgresql
-export POSTGRE_NAME='UFPS'
-export POSTGRE_USER='prabahar'
-export POSTGRE_PASSWORD='Cera@3003'
-export POSTGRE_HOST=localhost
-export POSTGRE_PORT=5432
-
-
-
 ./configure --prefix=/gpfs/fs7/aafc/phenocart/IDEs/Postgres/pgsql
 make
 make install
