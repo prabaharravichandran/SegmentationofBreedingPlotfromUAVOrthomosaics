@@ -22,7 +22,7 @@ sam = sam_model_registry[model_type](checkpoint=original_checkpoint)
 sam.mask_decoder = SAMDecoder(input_dim=256, output_channels=1)
 
 # Load your fine-tuned weights correctly
-fine_tuned_checkpoint = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/model_checkpoints/finetuned_sam_epoch2000.pth"
+fine_tuned_checkpoint = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/model_checkpoints/finetuned_sam_epoch5000.pth"
 sam.load_state_dict(torch.load(fine_tuned_checkpoint))
 sam.eval()
 
@@ -56,7 +56,7 @@ overlay[mask_binary == 1] = (0.5 * overlay[mask_binary == 1] + 0.5 * color).asty
 
 # Save result
 overlay_bgr = cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR)
-output_path = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/predictions/mask_overlay_2000.jpg"
+output_path = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/predictions/mask_overlay_5000.jpg"
 cv2.imwrite(output_path, overlay_bgr)
 
 print(f"Mask overlay saved at {output_path}")
