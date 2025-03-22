@@ -6,13 +6,13 @@
 This project involves developing a custom Detectron2 model to detect breeding plots in orthomosaics. The workflow incorporates Label Studio for image annotation, which integrates with a PostgreSQL for data management.
 
 <p align="center">
-  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Detectron2.jpg" alt="Image Segmentation with Detectron2" width="100%">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/detectron2_test_1.jpg" alt="Image Segmentation with Detectron2" width="100%">
   <br>
   <em>Figure 1: Segmentation with Detectron2</em>
 </p>
 
 <p align="center">
-  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/SegmentAnything_2000.jpg" alt="Image Segmentation with SegmentAnything" width="100%">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/segmentanything_test_1_5000.jpg" alt="Image Segmentation with SegmentAnything" width="100%">
   <br>
   <em>Figure 2: Segmentation with SegmentAnything</em>
 </p>

@@ -31,7 +31,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 sam.to(device)
 
 # Load and preprocess image
-image_path = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/predictions/image.jpg"
+image_path = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/predictions/test_1.jpg"
 image = cv2.imread(image_path)
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 input_image = cv2.resize(image_rgb, (1024, 1024))
@@ -56,7 +56,7 @@ overlay[mask_binary == 1] = (0.5 * overlay[mask_binary == 1] + 0.5 * color).asty
 
 # Save result
 overlay_bgr = cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR)
-output_path = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/predictions/mask_overlay_5000.jpg"
+output_path = "/mnt/PhenomicsProjects/Detectron2/Apptainer/segmentanything/segmentanything_sandbox/home/ubuntu/predictions/mask_test_1_5000.jpg"
 cv2.imwrite(output_path, overlay_bgr)
 
 print(f"Mask overlay saved at {output_path}")
