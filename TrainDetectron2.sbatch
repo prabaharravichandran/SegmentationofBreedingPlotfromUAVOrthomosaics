@@ -13,6 +13,9 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=prabahar.ravichandran@agr.gc.ca
 
+export TMPDIR=/tmp/$USER
+mkdir -p $TMPDIR
+
 # Change directory to where your Apptainer container is built (if needed)
 cd /gpfs/fs7/aafc/phenocart/PhenomicsProjects/Detectron2/Apptainer/detectron2
 
@@ -32,4 +35,4 @@ apptainer exec \
     --contain \
     --no-home \
     detectron2_sandbox \
-    /bin/bash -c ". /home/venv/bin/activate && python /home/appuser/scripts/finetuning.py"
+    /bin/bash -c ". /home/venv/bin/activate && python /home/appuser/scripts/finetuning_multiplegpu.py"

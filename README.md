@@ -127,7 +127,7 @@ apptainer shell \
    --bind /gpfs/fs7/aafc/phenocart:/mnt \
    --contain \
    --no-home \
-   apptainer_sandbox/
+   segmentanything_sandbox/
 ```
 Setup Postgres
 

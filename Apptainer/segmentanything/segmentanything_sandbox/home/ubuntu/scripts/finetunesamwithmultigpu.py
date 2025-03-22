@@ -12,7 +12,7 @@ import subprocess
 import time
 
 # Path to the system monitoring script
-MONITOR_SCRIPT_PATH = "/home/ubuntu/scripts/SystemMonitor.sh"
+MONITOR_SCRIPT_PATH = "/home/appuser/scripts/SystemMonitor.sh"
 
 def start_monitoring():
     print("Starting system monitoring...")
