@@ -179,3 +179,8 @@ stop
 - Add support for multiple plot shapes and sizes.
 - Develop a GUI or web-based interface for easier use.
 
+Fine-tuned Detectron2 model
+
+```
+https://prabahar.s3.ca-central-1.amazonaws.com/models/segmentation/detectron2/finetuned4plots_250324.pth
+```
