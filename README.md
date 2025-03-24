@@ -8,13 +8,13 @@ This project involves developing a custom Detectron2 model to detect breeding pl
 <p align="center">
   <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/detectron2_test_1.jpg" alt="Image Segmentation with Detectron2" width="100%">
   <br>
-  <em>Figure 1: Segmentation with Detectron2</em>
+  <em>Figure 1: Segmentation with fine-tuned Detectron2</em>
 </p>
 
 <p align="center">
   <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/segmentanything_test_1_5000.jpg" alt="Image Segmentation with SegmentAnything" width="100%">
   <br>
-  <em>Figure 2: Segmentation with SegmentAnything</em>
+  <em>Figure 2: Segmentation with fine-tuned SegmentAnything</em>
 </p>
 
 Build apptainers for training Detectron2,
@@ -147,3 +147,35 @@ stop
 /gpfs/fs7/aafc/phenocart/IDEs/Postgres/pgsql/bin/pg_ctl -D /gpfs/fs7/aafc/phenocart/IDEs/Postgres/data stop
 # SemanticSegmentationwithDetectron2LabelStudioPostGRESDB
 ```
+
+**PlotFinder** is a tool designed to segment agricultural plots in orthomosaic images using deep learning models. The goal is to accurately identify individual plots and generate shapefiles or polygon data that can be used in GIS applications for further analysis.
+
+## Objectives
+- Segment plots in orthomosaics using deep learning.
+- Generate shapefiles or polygon data for integration with GIS tools.
+
+## Workflow
+1. **Raster Handling**
+   - Load and visualize orthomosaic rasters with embedded geospatial metadata.
+
+2. **Model Training**
+   - Train deep learning models for plot segmentation and identification.
+
+3. **Image Slicing & Processing**
+   - Develop a method to slice large orthomosaic images.
+   - Process sliced images through the trained deep learning model.
+   - Stitch the segmented slices back into a unified output.
+
+4. **Mask Generation**
+   - Generate binary or multi-class masks for segmented plots.
+   - Extract geospatial information from the masks.
+
+5. **Shapefile Conversion**
+   - Convert segmentation masks into shapefiles or polygon formats.
+   - Enable downstream analysis in GIS platforms.
+
+## Future Enhancements
+- Optimize model inference speed for large-scale datasets.
+- Add support for multiple plot shapes and sizes.
+- Develop a GUI or web-based interface for easier use.
+
