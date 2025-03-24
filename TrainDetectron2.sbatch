@@ -35,4 +35,4 @@ apptainer exec \
     --contain \
     --no-home \
     detectron2_sandbox \
-    /bin/bash -c ". /home/venv/bin/activate && python /home/appuser/scripts/finetuning_multiplegpu.py"
+    /bin/bash -c ". /home/venv/bin/activate && python /home/appuser/scripts/finetuning/finetuning_multiplegpu.py"
